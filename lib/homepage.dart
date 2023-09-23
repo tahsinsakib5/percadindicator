@@ -1,4 +1,3 @@
-
 // ignore_for_file: prefer_const_literals_to_create_immutables, unused_import
 
 import 'package:percadindicator/test.dart';
@@ -13,8 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-     double iscorect =0;
+  double iscorect = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,36 +20,38 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           CircularPercentIndicator(
-            radius:150,
+            radius: 150,
             animation: true,
-            animationDuration:1000,
-          percent:iscorect,
-          lineWidth: 40,
-          progressColor: Colors.pink,
-          backgroundColor:Color.fromARGB(255, 231, 198, 209),
-          circularStrokeCap: CircularStrokeCap.round,
+            animationDuration: 1000,
+            percent: iscorect,
+            lineWidth: 40,
+            progressColor: Colors.pink,
+            backgroundColor: Color.fromARGB(255, 231, 198, 209),
+            circularStrokeCap: CircularStrokeCap.round,
           ),
-
-          ElevatedButton(onPressed: (){
-           navigat();
-
-          }, child: Text("start"))
+          ElevatedButton(
+              onPressed: () {
+                navigat();
+              },
+              child: Text("start"))
         ],
       ),
-      
     );
   }
 
-  Future navigat()async{
-       setState(() {
-              if(iscorect==0){
-                iscorect++;
-              }else{
-                Navigator.push(context, MaterialPageRoute(builder: (context) => Test(),));
-              }
-            });
-            
-
-          
+  Future navigat() async {
+    if (iscorect < 1) {
+      setState(() {
+        setState(() {
+          iscorect += 1;
+        });
+      });
+    } else {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Test(),
+          ));
+    }
   }
 }
